@@ -64,11 +64,6 @@ def convert(type,nr):
     else:
        return "Ky Konvertim nuk gjendet ketu"
 
-def gcf(nr1,nr2):
-    if nr2 == 0:
-        return nr2
-    else:
-        return gcf(nr2,nr1%nr2)
 
      
     
