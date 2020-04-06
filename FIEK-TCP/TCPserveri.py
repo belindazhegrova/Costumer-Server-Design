@@ -6,6 +6,8 @@ from _thread import *
 print('-------------------------------------KY ESHTE PROGRAMI FIEK-TCP SERVER--------------------------------------------------')
 print('------------------------------------------------------------------------------------------------------------------------')
 print('------------------------------------------------------------------------------------------------------------------------')
+
+
 def IpAddress():
     return "Ip adresa juaj eshte %s" % address[0]
 
@@ -76,9 +78,7 @@ def gcf(num1,num2):
 
 
 
-   
-
-def kerkesat(data, clientS):
+ def kerkesat(data, clientS):
     try:
         request = data.split()
         response = ""
