@@ -3,9 +3,9 @@ from datetime import *
 import random
 from _thread import *
 
-print('=================================KY ESHTE PROGRAMI FIEK-TCP SERVER==============================================')
-print('=================================================================================================================')
-
+print('-------------------------------------KY ESHTE PROGRAMI FIEK-TCP SERVER--------------------------------------------------')
+print('------------------------------------------------------------------------------------------------------------------------')
+print('------------------------------------------------------------------------------------------------------------------------')
 def IpAddress():
     return "Ip adresa juaj eshte %s" % address[0]
 
@@ -24,7 +24,7 @@ def count(request):
             ccount += 1
         else:
             vcount +=1
-    return  "Teksti i pranuar permban  " + str(vcount) + "zanore dhe  " + str(ccount) + "bashketingllore"
+    return  "Teksti i pranuar permban  " + str(vcount) + " zanore dhe  " + str(ccount) + " bashketingllore"
     
 
 def reverse(request):
@@ -48,38 +48,35 @@ def game():
     for i in range(5):
         listaNumrave.append(random.randint(1,35))
     listaNumrave.sort()
-    return str(listaNumrave) + "  5 numra te rastesishem nga 35"
+    return str(listaNumrave) + " 5 numra te rastesishem nga 35"
 
 
 def convert(type,nr):
     nr = float(nr)
     if(type == "CmToFeet"):
-        return nr /30.48
+        return  '{:.2f}'.format(nr /30.48) 
     elif (type == "FeetToCm"):
-            return nr * 30.48
+            return  '{:.2f}'.format(nr * 30.48)
     elif (type == "KmToMile"):
-            return nr / 1.609344
+            return  '{:.2f}'.format(nr / 1.609344)
     elif (type == "MileToKm"):
-            return nr * 1.609344
+            return  '{:.2f}'.format(nr * 1.609344)
     else:
        return "Ky Konvertim nuk gjendet ketu"
 
 
-     
-    
+def gcf(num1,num2):
+    num1=int(num1)
+    num2=int(num2)
+    while(num2):
+        num1, num2=num2, num1 % num2
+
+    return "Faktori me i madh i perbashket i dy numrave eshte: " + str(num1)
 
 
 
 
-
-
-
-
-
-
-
-
-        
+   
 
 def kerkesat(data, clientS):
     try:
@@ -102,17 +99,14 @@ def kerkesat(data, clientS):
         elif request[0] == "CONVERT":
             response = str(convert(request[1],request[2]))
         elif request[0] == "GCF":
-            response == str(gcf(request[1],request[2]))
-       
-
-        
-     
+            response = gcf(request[1],request[2])
         else:
             response = "Kerkese invalide"
         clientS.sendall(str.encode(response))
     except:
         response = "Ka ndodhur nje gabim, ju lutem provoni perseri "
         clientS.sendall(str.encode(response))
+
     
 def client_thread(clientS):
     while True:
@@ -128,7 +122,7 @@ serverPort = 13000
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 s.bind((serverName, serverPort))
-s.listen(5)
+s.listen()
 print("Serveri eshte duke pritur per ndonje kerkese ")
 
 
