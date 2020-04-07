@@ -5,15 +5,16 @@ from _thread import *
 
 print('-------------------------------------KY ESHTE PROGRAMI FIEK-TCP SERVER--------------------------------------------------')
 print('------------------------------------------------------------------------------------------------------------------------')
-print('------------------------------------------------------------------------------------------------------------------------')
 
 
 def IpAddress():
     return "Ip adresa juaj eshte %s" % address[0]
 
 
+
 def porti():
     return "Klienti eshte duke perdorur portin %s" % address[1]
+
 
 
 def count(request):
@@ -27,12 +28,14 @@ def count(request):
         else:
             vcount +=1
     return  "Teksti i pranuar permban  " + str(vcount) + " zanore dhe  " + str(ccount) + " bashketingllore"
-    
+
+
 
 def reverse(request):
   #return request[::-1]
   return ''.join(reversed(request))
 
+   
 
 def is_palindrome(request):
    if(request == request[::-1]):
@@ -53,6 +56,16 @@ def game():
     return str(listaNumrave) + " 5 numra te rastesishem nga 35"
 
 
+def gcf(num1,num2):
+    num1=int(num1)
+    num2=int(num2)
+    while(num2):
+        num1, num2=num2, num1 % num2
+
+    return "Faktori me i madh i perbashket i dy numrave eshte: " + str(num1)
+
+
+
 def convert(type,nr):
     nr = float(nr)
     if(type == "CmToFeet"):
@@ -67,18 +80,34 @@ def convert(type,nr):
        return "Ky Konvertim nuk gjendet ketu"
 
 
-def gcf(num1,num2):
-    num1=int(num1)
-    num2=int(num2)
-    while(num2):
-        num1, num2=num2, num1 % num2
 
-    return "Faktori me i madh i perbashket i dy numrave eshte: " + str(num1)
+def check(n):
+    n = float(n)
+    if n>0:
+        return "Positive number"
+    elif n==0:
+        return "Zero"
+    else:
+        return "Negative number"
+
+
+
+def grade(mark1,mark2,mark3,mark4,mark5):
+    mark1=float(mark1)
+    mark2=float(mark2)
+    mark3=float(mark3)
+    mark4=float(mark4)
+    mark5=float(mark5)
+
+    total= mark1 + mark2 + mark3 + mark4 + mark5
+    perc=(total /500)*100
+
+    return "total marks = %.2f " %total + " mark percetange = %.2f" % perc
 
 
 
 
- def kerkesat(data, clientS):
+def kerkesat(data, clientS):
     try:
         request = data.split()
         response = ""
@@ -89,20 +118,26 @@ def gcf(num1,num2):
         elif request[0] == "COUNT":
             response = count(request[1])
         elif request[0] == "TIME":
-            response = koha()
+            response = time()
         elif request[0] == "REVERSE":
             response = reverse(request[1])
         elif request[0] == "GAME":
             response = game()
         elif request[0] == "PALINDROME":
             response = is_palindrome(request[1])
-        elif request[0] == "CONVERT":
-            response = str(convert(request[1],request[2]))
         elif request[0] == "GCF":
             response = gcf(request[1],request[2])
+        elif request[0] == "CONVERT":
+            response = str(convert(request[1],request[2]))
+        elif request[0] == "CHECK":
+            response = str(check(request[1]))
+        elif request[0] == "GRADE":
+            response = str(grade(request[1],request[2],request[3],request[4],request[5]))
+        
         else:
             response = "Kerkese invalide"
         clientS.sendall(str.encode(response))
+        
     except:
         response = "Ka ndodhur nje gabim, ju lutem provoni perseri "
         clientS.sendall(str.encode(response))

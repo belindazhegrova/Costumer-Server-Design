@@ -2,7 +2,6 @@ import socket
 
 print('------------------------------------------KY ESHTE PROGRAMI FIEK-TCP CLIENT---------------------------------------------')
 print('------------------------------------------------------------------------------------------------------------------------')
-print('------------------------------------------------------------------------------------------------------------------------')
 
 
 
@@ -19,9 +18,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((serverName, serverPort))
     while True:
         try:
-            request = input("Operacioni (IPADDRESS, PORT, COUNT, REVERSE, PALINDROME, TIME, GAME, GCF, CONVERT)?apo close per te dalur nga programi: ")
-            if (request == "close"):
-                break
+            request = input("Operacioni (IPADDRESS, PORT, COUNT, REVERSE, PALINDROME, TIME, GAME, GCF, CONVERT,CHECK,GRADE)? ")
             s.sendall(str.encode(request))
             response = s.recv(128).decode()
             print('Pergjigja: ', repr(response))
