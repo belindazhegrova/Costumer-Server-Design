@@ -3,8 +3,8 @@ from datetime import *
 import random
 from _thread import *
 
-print('-------------------------------------KY ESHTE PROGRAMI FIEK-TCP SERVER--------------------------------------------------')
-print('------------------------------------------------------------------------------------------------------------------------')
+print('-------------------------------------KY ESHTE PROGRAMI FIEK-TCP SERVER-------------------------------------------------')
+print('-----------------------------------------------------------------------------------------------------------------------')
 
 
 def IpAddress():
@@ -154,6 +154,7 @@ def client_thread(clientS):
 serverName = 'localhost'
 serverPort = 13000
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
 
 s.bind((serverName, serverPort))
 s.listen(5)
