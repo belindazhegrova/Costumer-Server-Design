@@ -147,8 +147,7 @@ def client_thread(clientS):
     while True:
 
         data = clientS.recv(128).decode()
-        if not data:
-            break
+       
         kerkesat(data, clientS)
     clientS.close()
 
@@ -157,7 +156,7 @@ serverPort = 13000
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 s.bind((serverName, serverPort))
-s.listen()
+s.listen(5)
 print("Serveri eshte duke pritur per ndonje kerkese ")
 
 
