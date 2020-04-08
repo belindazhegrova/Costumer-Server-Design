@@ -7,48 +7,48 @@ print('-------------------------------------KY ESHTE PROGRAMI FIEK-TCP SERVER---
 print('-----------------------------------------------------------------------------------------------------------------------')
 
 
-def IpAddress():
+def IPADDRESS():
     return "Ip adresa juaj eshte %s" % address[0]
 
 
 
-def porti():
+def PORT():
     return "Klienti eshte duke perdorur portin %s" % address[1]
 
 
 
-def count(request):
-    consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']
-    ccount = 0
-    vcount=0
+def COUNT(request):
+    vowels = ['A','E','I','O','U']
+    vcount = 0
+    ccount=0
     message = str(request).upper()
     for i in range (0, len(message)):
-        if(message[i] in consonants):
-            ccount += 1
+        if(message[i] in vowels):
+            vcount += 1
         else:
-            vcount +=1
+            ccount +=1
     return  "Teksti i pranuar permban  " + str(vcount) + " zanore dhe  " + str(ccount) + " bashketingllore"
 
 
 
-def reverse(request):
-  #return request[::-1]
-  return ''.join(reversed(request))
+def REVERSE(request):
+ return request[::-1]
+  
 
    
 
-def is_palindrome(request):
+def PALINDROME(request):
    if(request == request[::-1]):
        return "Teksti i dhene eshte palindrome"
    else:
        return "Teksi i dhene nuk eshte palindrome"
                                       
 
-def time():
+def TIME():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 
-def game():
+def GAME():
     listaNumrave = []
     for i in range(5):
         listaNumrave.append(random.randint(1,35))
@@ -56,7 +56,7 @@ def game():
     return str(listaNumrave) + " 5 numra te rastesishem nga 35"
 
 
-def gcf(num1,num2):
+def GCF(num1,num2):
     num1=int(num1)
     num2=int(num2)
     while(num2):
@@ -66,33 +66,33 @@ def gcf(num1,num2):
 
 
 
-def convert(type,nr):
+def CONVERT(type,nr):
     nr = float(nr)
     if(type == "CmToFeet"):
-        return  '{:.2f}'.format(nr /30.48) 
+        return  '{:.2f}'.format(nr /30.48)+'ft'
     elif (type == "FeetToCm"):
-            return  '{:.2f}'.format(nr * 30.48)
+            return  '{:.2f}'.format(nr * 30.48)+'cm'
     elif (type == "KmToMile"):
-            return  '{:.2f}'.format(nr / 1.609344)
+            return  '{:.2f}'.format(nr / 1.609344)+'mile'
     elif (type == "MileToKm"):
-            return  '{:.2f}'.format(nr * 1.609344)
+            return  '{:.2f}'.format(nr * 1.609344)+'km'
     else:
        return "Ky Konvertim nuk gjendet ketu"
 
 
 
-def check(n):
+def CHECK(n):
     n = float(n)
     if n>0:
-        return "Positive number"
+        return "Numri eshte pozitiv"
     elif n==0:
         return "Zero"
     else:
-        return "Negative number"
+        return "Numri eshte negativ"
 
 
 
-def grade(mark1,mark2,mark3,mark4,mark5):
+def FIND(mark1,mark2,mark3,mark4,mark5):
     mark1=float(mark1)
     mark2=float(mark2)
     mark3=float(mark3)
@@ -102,7 +102,7 @@ def grade(mark1,mark2,mark3,mark4,mark5):
     total= mark1 + mark2 + mark3 + mark4 + mark5
     perc=(total /500)*100
 
-    return "total marks = %.2f " %total + " mark percetange = %.2f" % perc
+    return "totali i notav eshte  %.2f " %total + " dhe  nota mesatare eshte  %.2f" % perc
 
 
 
@@ -112,28 +112,27 @@ def kerkesat(data, clientS):
         request = data.split()
         response = ""
         if request[0] == "IPADDRESS":
-            response = IpAddress()
+            response = IPADDRESS()
         elif request[0] == "PORT":
-            response = porti()
+            response = PORT()
         elif request[0] == "COUNT":
-            response = count(request[1])
+            response = COUNT(request[1])
         elif request[0] == "TIME":
-            response = time()
+            response = TIME()
         elif request[0] == "REVERSE":
-            response = reverse(request[1])
+            response = REVERSE(request[1])
         elif request[0] == "GAME":
-            response = game()
+            response = GAME()
         elif request[0] == "PALINDROME":
-            response = is_palindrome(request[1])
+            response = PALINDROME(request[1])
         elif request[0] == "GCF":
-            response = gcf(request[1],request[2])
+            response = GCF(request[1],request[2])
         elif request[0] == "CONVERT":
-            response = str(convert(request[1],request[2]))
+            response = str(CONVERT(request[1],request[2]))
         elif request[0] == "CHECK":
-            response = str(check(request[1]))
-        elif request[0] == "GRADE":
-            response = str(grade(request[1],request[2],request[3],request[4],request[5]))
-        
+            response = str(CHECK(request[1]))
+        elif request[0] == "FIND":
+            response = str(FIND(request[1],request[2],request[3],request[4],request[5]))
         else:
             response = "Kerkese invalide"
         clientS.sendall(str.encode(response))
@@ -145,27 +144,26 @@ def kerkesat(data, clientS):
     
 def client_thread(clientS):
     while True:
-
         data = clientS.recv(128).decode()
-       
         kerkesat(data, clientS)
     clientS.close()
+
 
 serverName = 'localhost'
 serverPort = 13000
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
-
 s.bind((serverName, serverPort))
+print('Serveri eshte startuar ne localhost ne portin: ' + str(serverPort))
 s.listen(5)
 print("Serveri eshte duke pritur per ndonje kerkese ")
 
 
-
 while True:
     clientS, address = s.accept()
-    print("Klienti i lidhur ne portin  " +   str(address[1]) )
+    print("Klienti i lidhur ne portin  " +   str(address[1]))
     start_new_thread(client_thread, (clientS,))
 
-
 s.close()
+
+

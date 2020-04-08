@@ -18,7 +18,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((serverName, serverPort))
     while True:
         try:
-            request = input("Operacioni (IPADDRESS, PORT, COUNT, REVERSE, PALINDROME, TIME, GAME, GCF, CONVERT,CHECK,GRADE)? ")
+            request = input("Operacioni (IPADDRESS, PORT, COUNT, REVERSE, PALINDROME, TIME, GAME, GCF, CONVERT,CHECK,FIND)? ")
             s.sendall(str.encode(request))
             response = s.recv(128).decode()
             print('Pergjigja: ', repr(response))
