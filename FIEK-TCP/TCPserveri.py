@@ -6,9 +6,9 @@ from _thread import *
 print('-------------------------------------KY ESHTE PROGRAMI FIEK-TCP SERVER-------------------------------------------------')
 print('-----------------------------------------------------------------------------------------------------------------------')
 
-
 def IPADDRESS():
     return "Ip adresa juaj eshte %s" % address[0]
+
 
 
 
@@ -17,26 +17,31 @@ def PORT():
 
 
 
+
 def COUNT(request):
     vowels = ['A','E','I','O','U']
     vcount = 0
     ccount=0
-    message = str(request).upper()
-    for i in range (0, len(message)):
-        if(message[i] in vowels):
+    text = ''.join([str(word) for word in request])
+    for i in range (0, len(text)):
+        if(text[i] in vowels):
             vcount += 1
         else:
             ccount +=1
     return  "Teksti i pranuar permban  " + str(vcount) + " zanore dhe  " + str(ccount) + " bashketingllore"
+    
 
 
 
-def REVERSE(request):
- return request[::-1]
-  
+
+def REVERSE(word):
+  text = ''.join([str(item) for item in word])
+  reverseTEXT= text[::-1]
+  return reverseTEXT
+
+
 
    
-
 def PALINDROME(request):
    if(request == request[::-1]):
        return "Teksti i dhene eshte palindrome"
@@ -44,8 +49,12 @@ def PALINDROME(request):
        return "Teksi i dhene nuk eshte palindrome"
                                       
 
+
+
 def TIME():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
 
 
 def GAME():
@@ -56,6 +65,8 @@ def GAME():
     return str(listaNumrave) + " 5 numra te rastesishem nga 35"
 
 
+
+
 def GCF(num1,num2):
     num1=int(num1)
     num2=int(num2)
@@ -63,6 +74,8 @@ def GCF(num1,num2):
         num1, num2=num2, num1 % num2
 
     return "Faktori me i madh i perbashket i dy numrave eshte: " + str(num1)
+
+
 
 
 
@@ -77,7 +90,8 @@ def CONVERT(type,nr):
     elif (type == "MileToKm"):
             return  '{:.2f}'.format(nr * 1.609344)+'km'
     else:
-       return "Ky Konvertim nuk gjendet ketu"
+       return "Keni bere gabim gjate shenimit"
+
 
 
 
@@ -89,6 +103,7 @@ def CHECK(n):
         return "Zero"
     else:
         return "Numri eshte negativ"
+
 
 
 
@@ -107,6 +122,7 @@ def FIND(mark1,mark2,mark3,mark4,mark5):
 
 
 
+
 def kerkesat(data, clientS):
     try:
         request = data.split()
@@ -116,11 +132,11 @@ def kerkesat(data, clientS):
         elif request[0] == "PORT":
             response = PORT()
         elif request[0] == "COUNT":
-            response = COUNT(request[1])
+            response = COUNT(request[1:])
         elif request[0] == "TIME":
             response = TIME()
         elif request[0] == "REVERSE":
-            response = REVERSE(request[1])
+            response = REVERSE(request[1:])
         elif request[0] == "GAME":
             response = GAME()
         elif request[0] == "PALINDROME":
