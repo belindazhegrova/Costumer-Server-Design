@@ -141,7 +141,7 @@ serverName = 'localhost'
 serverPort = 13000
 serverSocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 serverSocket.bind((serverName, serverPort))
-print("Serveri eshte duke pritur per ndonje kerkese ")
+print("Serveri eshte duke pritur per ndonje kerkese")
 
 
 
