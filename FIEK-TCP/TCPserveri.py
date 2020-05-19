@@ -9,14 +9,8 @@ print('-------------------------------------------------------------------------
 def IPADDRESS():
     return "Ip adresa juaj eshte %s" % address[0]
 
-
-
-
 def PORT():
     return "Klienti eshte duke perdorur portin %s" % address[1]
-
-
-
 
 def COUNT(request):
     vowels = ['A','E','I','O','U']
@@ -31,30 +25,20 @@ def COUNT(request):
     return  "Teksti i pranuar permban  " + str(vcount) + " zanore dhe  " + str(ccount) + " bashketingllore"
     
 
-
-
-
 def REVERSE(word):
   text = ''.join([str(item) for item in word])
   reverseTEXT= text[::-1]
   return reverseTEXT
 
 
-
-   
 def PALINDROME(request):
    if(request == request[::-1]):
        return "Teksti i dhene eshte palindrome"
    else:
        return "Teksi i dhene nuk eshte palindrome"
                                       
-
-
-
 def TIME():
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-
 
 
 def GAME():
@@ -65,8 +49,6 @@ def GAME():
     return str(listaNumrave) + " 5 numra te rastesishem nga 35"
 
 
-
-
 def GCF(num1,num2):
     num1=int(num1)
     num2=int(num2)
@@ -74,9 +56,6 @@ def GCF(num1,num2):
         num1, num2=num2, num1 % num2
 
     return "Faktori me i madh i perbashket i dy numrave eshte: " + str(num1)
-
-
-
 
 
 def CONVERT(type,nr):
@@ -93,8 +72,6 @@ def CONVERT(type,nr):
        return "Keni bere gabim gjate shenimit"
 
 
-
-
 def CHECK(n):
     n = float(n)
     if n>0:
@@ -103,7 +80,6 @@ def CHECK(n):
         return "Zero"
     else:
         return "Numri eshte negativ"
-
 
 
 
@@ -118,8 +94,6 @@ def FIND(mark1,mark2,mark3,mark4,mark5):
     perc=(total /500)*100
 
     return "totali i notav eshte  %.2f " %total + " dhe  nota mesatare eshte  %.2f" % perc
-
-
 
 
 
